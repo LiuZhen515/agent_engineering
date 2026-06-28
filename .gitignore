@@ -1,0 +1,22 @@
+# 书稿仓库：排除代码仓（独立仓库）、管理文档、系统文件
+
+agent-engineering-code/
+
+# 管理文档（不对外发布）
+meta/
+
+# 操作系统
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# 编辑器
+.vscode/
+.idea/
+*.iml
+
+# 临时文件
+/tmp/
+temp/

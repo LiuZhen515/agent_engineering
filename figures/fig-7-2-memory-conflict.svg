@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 400" width="520" height="400">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&amp;family=Inter:wght@400;600;700&amp;display=swap');
+      text { font-family: 'Inter', 'Noto Sans SC', sans-serif; }
+      .title { font-size: 16px; font-weight: 600; fill: #1e1e1e; }
+      .node-title { font-size: 12px; font-weight: 600; fill: #1e1e1e; }
+      .node-desc { font-size: 10px; font-weight: 400; fill: #495057; }
+      .diamond-text { font-size: 11px; font-weight: 600; fill: #1e1e1e; }
+      .edge-label { font-size: 9px; font-weight: 600; fill: #339af0; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#868e96"/>
+    </marker>
+  </defs>
+
+  <rect width="520" height="400" fill="#ffffff" rx="8"/>
+  <text x="260" y="25" text-anchor="middle" class="title">Fig. 7.2  记忆冲突合并决策流</text>
+
+  <!-- ==================== 第 1 行：开始节点 ==================== -->
+  <rect x="190" y="36" width="140" height="34" rx="17" fill="#fff3bf" stroke="#f59f00" stroke-width="2"/>
+  <text x="260" y="57" text-anchor="middle" class="node-title">新信息到达</text>
+
+  <!-- 箭头 1→2 -->
+  <line x1="260" y1="70" x2="260" y2="92" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ==================== 第 2 行：比对（菱形）==================== -->
+  <polygon points="260,96 340,135 260,174 180,135" fill="#e7f5ff" stroke="#339af0" stroke-width="2"/>
+  <text x="260" y="131" text-anchor="middle" class="diamond-text">比对</text>
+  <text x="260" y="145" text-anchor="middle" class="node-desc">检查记忆冲突</text>
+
+  <!-- "无冲突" → 右侧 -->
+  <line x1="340" y1="135" x2="370" y2="135" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="350" y="127" text-anchor="middle" class="edge-label">无冲突</text>
+
+  <!-- 直接存入节点 -->
+  <rect x="370" y="117" width="130" height="36" rx="8" fill="#d3f9d8" stroke="#40c057" stroke-width="2"/>
+  <text x="435" y="139" text-anchor="middle" class="node-title">直接存入</text>
+
+  <!-- "有冲突" → 向下 -->
+  <line x1="260" y1="174" x2="260" y2="206" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="280" y="196" text-anchor="middle" class="edge-label">有冲突</text>
+
+  <!-- ==================== 第 3 行：类型判断（菱形）==================== -->
+  <polygon points="260,210 340,255 260,300 180,255" fill="#e7f5ff" stroke="#339af0" stroke-width="2"/>
+  <text x="260" y="251" text-anchor="middle" class="diamond-text">类型判断</text>
+  <text x="260" y="265" text-anchor="middle" class="node-desc">冲突信息类型</text>
+
+  <!-- 分支 1：用户偏好 → 左下 -->
+  <line x1="180" y1="255" x2="130" y2="255" stroke="#868e96" stroke-width="1.5"/>
+  <line x1="130" y1="255" x2="100" y2="285" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="150" y="248" text-anchor="middle" class="edge-label">用户偏好/事实</text>
+
+  <rect x="35" y="285" width="140" height="48" rx="8" fill="#fff4e6" stroke="#f76707" stroke-width="2"/>
+  <text x="105" y="306" text-anchor="middle" class="node-title">⏱ 时间优先</text>
+  <text x="105" y="322" text-anchor="middle" class="node-desc">最近记录覆盖旧记录</text>
+
+  <!-- 分支 2：外部知识 → 右下 -->
+  <line x1="340" y1="255" x2="390" y2="255" stroke="#868e96" stroke-width="1.5"/>
+  <line x1="390" y1="255" x2="420" y2="285" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="370" y="248" text-anchor="middle" class="edge-label">外部知识(非个人)</text>
+
+  <rect x="345" y="285" width="140" height="48" rx="8" fill="#e7f5ff" stroke="#339af0" stroke-width="2"/>
+  <text x="415" y="306" text-anchor="middle" class="node-title">🎯 置信度优先</text>
+  <text x="415" y="322" text-anchor="middle" class="node-desc">高置信度替换低置信度</text>
+
+  <!-- 分支 3：复杂信息 → 向下 -->
+  <line x1="260" y1="300" x2="260" y2="338" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="272" y="325" text-anchor="middle" class="edge-label">复杂/模糊信息</text>
+
+  <rect x="135" y="338" width="250" height="40" rx="8" fill="#d3f9d8" stroke="#40c057" stroke-width="2"/>
+  <text x="260" y="357" text-anchor="middle" class="node-title">🔀 保留分歧</text>
+  <text x="260" y="371" text-anchor="middle" class="node-desc">多版本共存 → 后续合并</text>
+</svg>

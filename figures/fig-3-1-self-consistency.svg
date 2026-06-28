@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 350" width="560" height="350">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&amp;family=Inter:wght@400;600;700&amp;display=swap');
+      text { font-family: 'Inter', 'Noto Sans SC', sans-serif; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#868e96"/>
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="500" height="350" fill="#ffffff" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="250" y="30" text-anchor="middle" font-size="16" font-weight="600" fill="#1e1e1e">Fig. 3.1  Self-Consistency 成本-准确率帕累托曲线（示意）</text>
+
+  <!-- ===== Y轴 ===== -->
+  <line x1="60" y1="50" x2="60" y2="280" stroke="#868e96" stroke-width="1.5"/>
+  <!-- Y轴标签 -->
+  <text x="16" y="165" text-anchor="middle" transform="rotate(-90,16,165)" font-size="12" fill="#495057">准确率(%)</text>
+  <!-- Y轴刻度: 70%, 80%, 90%, 100% | 图表高度 230px (y:50~280), 覆盖范围 30 个百分点 -->
+  <!-- 100% at y=50, 70% at y=280 -->
+  <!-- step = 230/3 = 76.67px per 10% -->
+  <!-- 100% -->
+  <line x1="50" y1="50" x2="60" y2="50" stroke="#868e96" stroke-width="1"/>
+  <text x="42" y="54" text-anchor="end" font-size="11" fill="#495057">100%</text>
+  <!-- 90% -->
+  <line x1="50" y1="126.7" x2="60" y2="126.7" stroke="#868e96" stroke-width="1"/>
+  <text x="42" y="130.7" text-anchor="end" font-size="11" fill="#495057">90%</text>
+  <!-- 80% -->
+  <line x1="50" y1="203.3" x2="60" y2="203.3" stroke="#868e96" stroke-width="1"/>
+  <text x="42" y="207.3" text-anchor="end" font-size="11" fill="#495057">80%</text>
+  <!-- 70% -->
+  <line x1="50" y1="280" x2="60" y2="280" stroke="#868e96" stroke-width="1"/>
+  <text x="42" y="284" text-anchor="end" font-size="11" fill="#495057">70%</text>
+
+  <!-- ===== 网格线 ===== -->
+  <line x1="60" y1="126.7" x2="445" y2="126.7" stroke="#dee2e6" stroke-width="0.8" stroke-dasharray="3,3"/>
+  <line x1="60" y1="203.3" x2="445" y2="203.3" stroke="#dee2e6" stroke-width="0.8" stroke-dasharray="3,3"/>
+
+  <!-- ===== X轴 ===== -->
+  <line x1="60" y1="280" x2="445" y2="280" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- X轴标签: 1次, 3次, 5次, 10次 -->
+  <!-- 数据点 x 坐标: 75, 175, 275, 410 (不等距, 体现真实的采样次数分布) -->
+  <text x="75" y="300" text-anchor="middle" font-size="12" fill="#495057">1次</text>
+  <text x="175" y="300" text-anchor="middle" font-size="12" fill="#495057">3次</text>
+  <text x="275" y="300" text-anchor="middle" font-size="12" fill="#495057">5次</text>
+  <text x="410" y="300" text-anchor="middle" font-size="12" fill="#495057">10次</text>
+  <text x="470" y="300" text-anchor="middle" font-size="12" fill="#495057">采样次数</text>
+  <!-- X轴说明 -->
+  <text x="445" y="276" text-anchor="start" font-size="11" fill="#868e96">成本(Token消耗)</text>
+
+  <!-- ===== 数据点转换 ===== -->
+  <!-- y = 280 - (value - 70) / 30 * 230 -->
+  <!-- (1次, 75%): x=75,  y = 280 - 5/30*230 = 280 - 38.3 = 241.7 -->
+  <!-- (3次, 84%): x=175, y = 280 - 14/30*230 = 280 - 107.3 = 172.7 -->
+  <!-- (5次, 89%): x=275, y = 280 - 19/30*230 = 280 - 145.7 = 134.3 -->
+  <!-- (10次, 94%): x=410, y = 280 - 24/30*230 = 280 - 184 = 96 -->
+
+  <!-- ===== 折线 ===== -->
+  <polyline points="75,241.7 175,172.7 275,134.3 410,96"
+            fill="none" stroke="#339af0" stroke-width="2.5" stroke-linejoin="round"/>
+
+  <!-- ===== 数据点圆点 ===== -->
+  <circle cx="75" cy="241.7" r="5" fill="#ffffff" stroke="#339af0" stroke-width="2.5"/>
+  <circle cx="175" cy="172.7" r="5" fill="#ffffff" stroke="#339af0" stroke-width="2.5"/>
+  <circle cx="275" cy="134.3" r="5" fill="#ffffff" stroke="#339af0" stroke-width="2.5"/>
+  <circle cx="410" cy="96" r="5" fill="#ffffff" stroke="#339af0" stroke-width="2.5"/>
+
+  <!-- ===== 数据标签 ===== -->
+  <text x="75" y="233.7" text-anchor="middle" font-size="11" font-weight="600" fill="#339af0">75%</text>
+  <text x="175" y="164.7" text-anchor="middle" font-size="11" font-weight="600" fill="#339af0">84%</text>
+  <text x="275" y="126.3" text-anchor="middle" font-size="11" font-weight="600" fill="#339af0">89%</text>
+  <text x="410" y="88" text-anchor="middle" font-size="11" font-weight="600" fill="#339af0">94%</text>
+
+  <!-- 脚注 -->
+  <text x="250" y="340" text-anchor="middle" font-size="10" fill="#adb5bd">（示意数据，基于 GSM8K 数学推理任务，model=GPT-4, T=0.7）</text>
+</svg>

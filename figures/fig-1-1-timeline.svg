@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 520" width="680" height="520">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&amp;family=Inter:wght@400;600;700&amp;display=swap');
+      text { font-family: 'Inter', 'Noto Sans SC', sans-serif; }
+      .title { font-size: 16px; font-weight: 600; fill: #1e1e1e; }
+      .year { font-size: 14px; font-weight: 700; fill: #1e1e1e; }
+      .event { font-size: 13px; font-weight: 600; fill: #1e1e1e; }
+      .desc { font-size: 12px; font-weight: 400; fill: #495057; }
+      .inflection { font-size: 12px; font-weight: 600; fill: #e03131; }
+      .future-title { font-size: 12px; font-weight: 600; fill: #e03131; }
+      .future-item { font-size: 11px; font-weight: 400; fill: #495057; }
+    </style>
+    <marker id="arrowR" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#868e96"/>
+    </marker>
+  </defs>
+
+  <rect width="680" height="520" fill="#ffffff" rx="8"/>
+  <text x="290" y="28" text-anchor="middle" class="title">Fig. 1.1  大模型应用演化简史</text>
+
+  <!-- ===== 第 1 行：2020 GPT-3 ===== -->
+  <rect x="30" y="48" width="220" height="46" rx="6" fill="#e7f5ff" stroke="#339af0" stroke-width="1.5"/>
+  <text x="50" y="76" class="year">2020</text>
+  <text x="105" y="76" class="event">GPT-3 发布</text>
+  <line x1="250" y1="71" x2="360" y2="71" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrowR)"/>
+  <text x="370" y="76" class="desc">Prompt 即产品（单次推理）</text>
+
+  <!-- 垂直连接 + 手动绘制箭头 -->
+  <line x1="100" y1="94" x2="100" y2="118" stroke="#868e96" stroke-width="1.5"/>
+  <line x1="100" y1="124" x2="100" y2="138" stroke="#868e96" stroke-width="1.5"/>
+  <polygon points="96,138 100,146 104,138" fill="#868e96"/>
+  <text x="115" y="134" class="inflection">拐点1：In-context Learning 取代微调</text>
+
+  <!-- ===== 第 2 行：2022 ChatGPT ===== -->
+  <rect x="30" y="150" width="220" height="46" rx="6" fill="#e7f5ff" stroke="#339af0" stroke-width="1.5"/>
+  <text x="50" y="178" class="year">2022</text>
+  <text x="105" y="178" class="event">ChatGPT</text>
+  <line x1="250" y1="173" x2="360" y2="173" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrowR)"/>
+  <text x="370" y="178" class="desc">对话即接口（多轮上下文）</text>
+
+  <line x1="100" y1="196" x2="100" y2="220" stroke="#868e96" stroke-width="1.5"/>
+  <line x1="100" y1="226" x2="100" y2="240" stroke="#868e96" stroke-width="1.5"/>
+  <polygon points="96,240 100,248 104,240" fill="#868e96"/>
+  <text x="115" y="236" class="inflection">拐点2：RAG 取代知识注入式微调</text>
+
+  <!-- ===== 第 3 行：2023 Function Calling ===== -->
+  <rect x="30" y="252" width="220" height="46" rx="6" fill="#fff4e6" stroke="#f76707" stroke-width="1.5"/>
+  <text x="50" y="280" class="year">2023</text>
+  <text x="105" y="280" class="event">Function Calling</text>
+  <line x1="250" y1="275" x2="360" y2="275" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrowR)"/>
+  <text x="370" y="280" class="desc">模型即调度器（工具调用）</text>
+
+  <line x1="100" y1="298" x2="100" y2="322" stroke="#868e96" stroke-width="1.5"/>
+  <line x1="100" y1="328" x2="100" y2="342" stroke="#868e96" stroke-width="1.5"/>
+  <polygon points="96,342 100,350 104,342" fill="#868e96"/>
+  <text x="115" y="338" class="inflection">拐点3：Tool Use 取代纯文本生成</text>
+
+  <!-- ===== 第 4 行：2024 Agent 系统 ===== -->
+  <rect x="30" y="354" width="220" height="46" rx="6" fill="#ffe0e0" stroke="#e03131" stroke-width="1.5"/>
+  <text x="50" y="382" class="year">2024</text>
+  <text x="105" y="382" class="event">Agent 系统</text>
+  <line x1="250" y1="377" x2="360" y2="377" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrowR)"/>
+  <text x="370" y="382" class="desc">模型即操作系统内核（自主循环）</text>
+
+  <!-- 下一个拐点 -->
+  <line x1="100" y1="400" x2="100" y2="424" stroke="#868e96" stroke-width="1.5"/>
+  <line x1="100" y1="430" x2="100" y2="444" stroke="#868e96" stroke-width="1.5"/>
+  <polygon points="96,444 100,452 104,444" fill="#868e96"/>
+  <text x="115" y="440" class="future-title">下一个拐点的候选假设</text>
+
+  <!-- 候选列表（与拐点标题对齐缩进） -->
+  <circle cx="115" cy="466" r="3" fill="#495057"/>
+  <text x="130" y="470" class="future-item">推理模型的内置推理能力</text>
+  <circle cx="115" cy="490" r="3" fill="#495057"/>
+  <text x="130" y="494" class="future-item">原生多模态工具调用</text>
+</svg>

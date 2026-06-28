@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 560" width="600" height="560">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&amp;family=Inter:wght@400;600;700&amp;display=swap');
+      text { font-family: 'Inter', 'Noto Sans SC', sans-serif; }
+      .node-title { font-size: 13px; font-weight: 600; fill: #1e1e1e; }
+      .node-desc { font-size: 11px; font-weight: 400; fill: #495057; }
+      .edge-label { font-size: 10px; font-weight: 600; fill: #339af0; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#868e96"/>
+    </marker>
+  </defs>
+
+  <rect width="600" height="560" fill="#ffffff" rx="8"/>
+  <text x="300" y="28" text-anchor="middle" font-size="16" font-weight="600" fill="#1e1e1e">Fig. 15.1  预算耗尽降级决策链</text>
+
+  <!-- 主列中心 x=230 -->
+
+  <!-- ===== 1. 起始胶囊 ===== -->
+  <rect x="110" y="50" width="240" height="42" rx="21" fill="#fff3bf" stroke="#f59f00" stroke-width="2"/>
+  <text x="230" y="75" text-anchor="middle" class="node-title">💰 预算使用超限</text>
+
+  <line x1="230" y1="92" x2="230" y2="132" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ===== 2. 菱形决策：50%（中心 230,198，宽 240，高 124）===== -->
+  <polygon points="230,136 350,198 230,260 110,198" fill="#e7f5ff" stroke="#339af0" stroke-width="2"/>
+  <text x="230" y="194" text-anchor="middle" class="node-title">剩余预算足够</text>
+  <text x="230" y="212" text-anchor="middle" class="node-title">完成 50% 以上？</text>
+
+  <!-- "是" → 右侧 -->
+  <line x1="350" y1="198" x2="380" y2="198" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="368" y="188" text-anchor="middle" class="edge-label">是</text>
+
+  <!-- "否" → 向下 -->
+  <line x1="230" y1="260" x2="230" y2="300" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ===== 3a. 模型降级（右侧，与菱形顶部对齐）===== -->
+  <rect x="380" y="176" width="140" height="44" rx="8" fill="#d3f9d8" stroke="#40c057" stroke-width="2"/>
+  <text x="450" y="195" text-anchor="middle" class="node-title">⬇ 模型降级</text>
+  <text x="450" y="212" text-anchor="middle" class="node-desc">GPT-4o → GPT-4o-mini</text>
+
+  <line x1="450" y1="220" x2="450" y2="248" stroke="#adb5bd" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="458" y="242" text-anchor="start" font-size="10" fill="#adb5bd">最小影响 ✓</text>
+
+  <!-- ===== 3b. 菱形决策：30%（中心 230,366，宽 240，高 124）===== -->
+  <polygon points="230,304 350,366 230,428 110,366" fill="#e7f5ff" stroke="#339af0" stroke-width="2"/>
+  <text x="230" y="362" text-anchor="middle" class="node-title">剩余预算足够</text>
+  <text x="230" y="380" text-anchor="middle" class="node-title">完成 30% 以上？</text>
+
+  <!-- "是" → 右侧 -->
+  <line x1="350" y1="366" x2="380" y2="366" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="368" y="356" text-anchor="middle" class="edge-label">是</text>
+
+  <!-- "否" → 向下 -->
+  <line x1="230" y1="428" x2="230" y2="462" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ===== 4a. 上下文压缩（右侧） ===== -->
+  <rect x="380" y="344" width="140" height="44" rx="8" fill="#fff4e6" stroke="#f76707" stroke-width="2"/>
+  <text x="450" y="363" text-anchor="middle" class="node-title">⬇ 上下文压缩</text>
+  <text x="450" y="380" text-anchor="middle" class="node-desc">H 滚动窗口 16→8 轮</text>
+
+  <line x1="450" y1="388" x2="450" y2="416" stroke="#adb5bd" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="458" y="410" text-anchor="start" font-size="10" fill="#adb5bd">中度影响 ✓</text>
+
+  <!-- ===== 4b. 终止胶囊 ===== -->
+  <rect x="110" y="462" width="240" height="44" rx="22" fill="#ffe0e0" stroke="#e03131" stroke-width="2"/>
+  <text x="230" y="481" text-anchor="middle" class="node-title">⏹ 终止</text>
+  <text x="230" y="499" text-anchor="middle" class="node-desc">返回已完成的子目标结果</text>
+
+  <line x1="230" y1="506" x2="230" y2="535" stroke="#adb5bd" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="238" y="530" text-anchor="start" font-size="10" fill="#adb5bd">最大影响但避免数据丢失</text>
+</svg>

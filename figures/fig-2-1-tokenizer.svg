@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 370" width="820" height="370">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;family=Source+Code+Pro:wght@400;600&amp;display=swap');
+      text { font-family: 'Inter', 'Noto Sans SC', sans-serif; }
+      .title { font-size: 15px; font-weight: 600; fill: #1e1e1e; }
+      .input-label { font-size: 11px; fill: #868e96; }
+      .input-text { font-size: 13px; font-weight: 500; fill: #343a40; font-family: 'Source Code Pro', 'Inter', 'Noto Sans SC', monospace; }
+      .method-label { font-size: 13px; font-weight: 700; }
+      .desc { font-size: 10px; font-weight: 400; fill: #868e96; }
+      .token-text { font-size: 11px; font-weight: 500; font-family: 'Source Code Pro', 'Inter', 'Noto Sans SC', monospace; }
+      .ellipsis { font-size: 14px; font-weight: 700; fill: #adb5bd; }
+      .note { font-size: 10px; font-weight: 400; fill: #868e96; font-style: italic; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#adb5bd"/>
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="820" height="370" fill="#ffffff" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="410" y="26" text-anchor="middle" class="title">Fig. 2.1  分词器对比示例：对同一段中文+英文混合文本</text>
+
+  <!-- 输入文本 -->
+  <text x="14" y="54" class="input-label">输入：</text>
+  <text x="62" y="54" class="input-text">"Python 的 list.append() 方法的时间复杂度是 O(1)"</text>
+
+  <line x1="14" y1="64" x2="806" y2="64" stroke="#dee2e6" stroke-width="0.5"/>
+
+  <!-- ============================================================ -->
+  <!-- Row 1: BPE -->
+  <!-- ============================================================ -->
+  <text x="14" y="96" class="method-label" fill="#339af0">BPE</text>
+  <text x="14" y="110" class="desc" fill="#339af0">(GPT-2/3)</text>
+
+  <text x="630" y="96" class="note">BPE 保持 "append" 完整</text>
+
+  <line x1="130" y1="95" x2="146" y2="95" stroke="#adb5bd" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- BPE Tokens -->
+  <rect x="152" y="80" width="52" height="28" rx="14" fill="#e7f5ff" stroke="#339af0" stroke-width="1"/>
+  <text x="178" y="98" text-anchor="middle" class="token-text" fill="#339af0">Python</text>
+
+  <rect x="212" y="80" width="30" height="28" rx="14" fill="#e7f5ff" stroke="#339af0" stroke-width="1"/>
+  <text x="227" y="98" text-anchor="middle" class="token-text" fill="#339af0">的</text>
+
+  <rect x="250" y="80" width="36" height="28" rx="14" fill="#e7f5ff" stroke="#339af0" stroke-width="1"/>
+  <text x="268" y="98" text-anchor="middle" class="token-text" fill="#339af0">list</text>
+
+  <rect x="294" y="80" width="18" height="28" rx="14" fill="#e7f5ff" stroke="#339af0" stroke-width="1"/>
+  <text x="303" y="98" text-anchor="middle" class="token-text" fill="#339af0">.</text>
+
+  <!-- 高亮：append 保持完整 -->
+  <rect x="320" y="80" width="56" height="28" rx="14" fill="#d0ebff" stroke="#74c0fc" stroke-width="1.5"/>
+  <text x="348" y="98" text-anchor="middle" class="token-text" fill="#1c7ed6">append</text>
+
+  <rect x="384" y="80" width="26" height="28" rx="14" fill="#e7f5ff" stroke="#339af0" stroke-width="1"/>
+  <text x="397" y="98" text-anchor="middle" class="token-text" fill="#339af0">()</text>
+
+  <rect x="418" y="80" width="42" height="28" rx="14" fill="#e7f5ff" stroke="#339af0" stroke-width="1"/>
+  <text x="439" y="98" text-anchor="middle" class="token-text" fill="#339af0">方法</text>
+
+  <!-- … -->
+  <text x="468" y="98" class="ellipsis">⋯</text>
+
+  <rect x="486" y="80" width="26" height="28" rx="14" fill="#e7f5ff" stroke="#339af0" stroke-width="1"/>
+  <text x="499" y="98" text-anchor="middle" class="token-text" fill="#339af0">O</text>
+
+  <rect x="520" y="80" width="30" height="28" rx="14" fill="#e7f5ff" stroke="#339af0" stroke-width="1"/>
+  <text x="535" y="98" text-anchor="middle" class="token-text" fill="#339af0">(1)</text>
+
+  <!-- ============================================================ -->
+  <!-- Row 2: WordPiece -->
+  <!-- ============================================================ -->
+  <line x1="14" y1="130" x2="806" y2="130" stroke="#dee2e6" stroke-width="0.5"/>
+
+  <text x="14" y="168" class="method-label" fill="#40c057">WordPiece</text>
+  <text x="14" y="182" class="desc" fill="#40c057">(BERT)</text>
+
+  <text x="630" y="168" class="note">WordPiece 拆为 "app"+"##end"</text>
+
+  <line x1="130" y1="167" x2="146" y2="167" stroke="#adb5bd" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- WordPiece Tokens -->
+  <rect x="152" y="153" width="52" height="28" rx="14" fill="#d3f9d8" stroke="#40c057" stroke-width="1"/>
+  <text x="178" y="171" text-anchor="middle" class="token-text" fill="#2f9e44">Python</text>
+
+  <rect x="212" y="153" width="26" height="28" rx="14" fill="#d3f9d8" stroke="#40c057" stroke-width="1"/>
+  <text x="225" y="171" text-anchor="middle" class="token-text" fill="#2f9e44">的</text>
+
+  <rect x="246" y="153" width="36" height="28" rx="14" fill="#d3f9d8" stroke="#40c057" stroke-width="1"/>
+  <text x="264" y="171" text-anchor="middle" class="token-text" fill="#2f9e44">list</text>
+
+  <rect x="290" y="153" width="18" height="28" rx="14" fill="#d3f9d8" stroke="#40c057" stroke-width="1"/>
+  <text x="299" y="171" text-anchor="middle" class="token-text" fill="#2f9e44">.</text>
+
+  <!-- 高亮：app + ##end -->
+  <rect x="316" y="153" width="30" height="28" rx="14" fill="#b2f2bb" stroke="#69db7c" stroke-width="1.5"/>
+  <text x="331" y="171" text-anchor="middle" class="token-text" fill="#2b8a3e">app</text>
+
+  <rect x="354" y="153" width="48" height="28" rx="14" fill="#b2f2bb" stroke="#69db7c" stroke-width="1.5"/>
+  <text x="378" y="171" text-anchor="middle" class="token-text" fill="#2b8a3e">##end</text>
+
+  <rect x="410" y="153" width="18" height="28" rx="14" fill="#d3f9d8" stroke="#40c057" stroke-width="1"/>
+  <text x="419" y="171" text-anchor="middle" class="token-text" fill="#2f9e44">(</text>
+
+  <rect x="436" y="153" width="18" height="28" rx="14" fill="#d3f9d8" stroke="#40c057" stroke-width="1"/>
+  <text x="445" y="171" text-anchor="middle" class="token-text" fill="#2f9e44">)</text>
+
+  <rect x="462" y="153" width="42" height="28" rx="14" fill="#d3f9d8" stroke="#40c057" stroke-width="1"/>
+  <text x="483" y="171" text-anchor="middle" class="token-text" fill="#2f9e44">方法</text>
+
+  <text x="512" y="171" class="ellipsis">⋯</text>
+
+  <rect x="530" y="153" width="26" height="28" rx="14" fill="#d3f9d8" stroke="#40c057" stroke-width="1"/>
+  <text x="543" y="171" text-anchor="middle" class="token-text" fill="#2f9e44">O</text>
+
+  <rect x="564" y="153" width="30" height="28" rx="14" fill="#d3f9d8" stroke="#40c057" stroke-width="1"/>
+  <text x="579" y="171" text-anchor="middle" class="token-text" fill="#2f9e44">(1)</text>
+
+  <!-- ============================================================ -->
+  <!-- Row 3: SentencePiece -->
+  <!-- ============================================================ -->
+  <line x1="14" y1="196" x2="806" y2="196" stroke="#dee2e6" stroke-width="0.5"/>
+
+  <text x="14" y="236" class="method-label" fill="#f76707">SentencePiece</text>
+  <text x="14" y="250" class="desc" fill="#f76707">(LLaMA/T5)</text>
+
+  <text x="630" y="236" class="note">SentencePiece 用 "▁" 标记空格</text>
+
+  <line x1="130" y1="235" x2="146" y2="235" stroke="#adb5bd" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- SentencePiece Tokens -->
+  <rect x="152" y="221" width="66" height="28" rx="14" fill="#fff4e6" stroke="#f76707" stroke-width="1"/>
+  <text x="185" y="239" text-anchor="middle" class="token-text" fill="#d9480f">▁Python</text>
+
+  <rect x="226" y="221" width="26" height="28" rx="14" fill="#fff4e6" stroke="#f76707" stroke-width="1"/>
+  <text x="239" y="239" text-anchor="middle" class="token-text" fill="#d9480f">的</text>
+
+  <rect x="260" y="221" width="42" height="28" rx="14" fill="#fff4e6" stroke="#f76707" stroke-width="1"/>
+  <text x="281" y="239" text-anchor="middle" class="token-text" fill="#d9480f">▁list</text>
+
+  <rect x="310" y="221" width="26" height="28" rx="14" fill="#ffe8cc" stroke="#ff922b" stroke-width="1.5"/>
+  <text x="323" y="239" text-anchor="middle" class="token-text" fill="#e8590c">▁.</text>
+
+  <rect x="344" y="221" width="56" height="28" rx="14" fill="#fff4e6" stroke="#f76707" stroke-width="1"/>
+  <text x="372" y="239" text-anchor="middle" class="token-text" fill="#d9480f">append</text>
+
+  <rect x="408" y="221" width="26" height="28" rx="14" fill="#fff4e6" stroke="#f76707" stroke-width="1"/>
+  <text x="421" y="239" text-anchor="middle" class="token-text" fill="#d9480f">()</text>
+
+  <rect x="442" y="221" width="46" height="28" rx="14" fill="#ffe8cc" stroke="#ff922b" stroke-width="1.5"/>
+  <text x="465" y="239" text-anchor="middle" class="token-text" fill="#e8590c">▁方法</text>
+
+  <text x="496" y="239" class="ellipsis">⋯</text>
+
+  <rect x="514" y="221" width="30" height="28" rx="14" fill="#ffe8cc" stroke="#ff922b" stroke-width="1.5"/>
+  <text x="529" y="239" text-anchor="middle" class="token-text" fill="#e8590c">▁O</text>
+
+  <rect x="552" y="221" width="30" height="28" rx="14" fill="#fff4e6" stroke="#f76707" stroke-width="1"/>
+  <text x="567" y="239" text-anchor="middle" class="token-text" fill="#d9480f">(1)</text>
+
+  <!-- ===== 底部说明 ===== -->
+  <line x1="14" y1="270" x2="806" y2="270" stroke="#dee2e6" stroke-width="0.5"/>
+
+  <text x="14" y="290" class="desc">蓝色 = BPE  ·  绿色 = WordPiece  ·  橙色 = SentencePiece</text>
+
+  <text x="14" y="310" class="desc">实际测试基于 GPT-2 (BPE)、BERT-base (WordPiece)、LLaMA-7b (SentencePiece)。中文在 BPE 中实际为字节级拆分，此处简化为字符示意。</text>
+
+</svg>

@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 380" width="450" height="380">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&amp;family=Inter:wght@400;600;700&amp;display=swap');
+      text { font-family: 'Inter', 'Noto Sans SC', sans-serif; }
+      .node-title { font-size: 14px; font-weight: 600; fill: #1e1e1e; }
+      .node-desc { font-size: 11px; font-weight: 400; fill: #495057; }
+      .edge-label { font-size: 11px; font-weight: 600; fill: #339af0; }
+      .caption { font-size: 11px; fill: #adb5bd; }
+    </style>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#339af0"/>
+    </marker>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#868e96"/>
+    </marker>
+  </defs>
+
+  <rect width="450" height="380" fill="#ffffff" rx="8"/>
+  <text x="225" y="28" text-anchor="middle" font-size="16" font-weight="600" fill="#1e1e1e">Fig. 13.1  ReAct 循环示意</text>
+
+  <!-- ===== 三个节点：等边三角形排列 ===== -->
+  <!-- 中心点: (225, 220) -->
+  <!-- Thought: 顶部 (225, 110) -->
+  <!-- Action: 右下 (340, 280) -->
+  <!-- Observation: 左下 (110, 280) -->
+
+  <!-- ===== 1. Thought 节点（顶部）===== -->
+  <rect x="153" y="72" width="144" height="50" rx="25" fill="#e7f5ff" stroke="#339af0" stroke-width="2"/>
+  <text x="225" y="96" text-anchor="middle" class="node-title">🤔 Thought</text>
+  <text x="225" y="112" text-anchor="middle" class="node-desc">思考 -> 规划下一步</text>
+
+  <!-- ===== 2. Action 节点（右下）===== -->
+  <rect x="268" y="242" width="144" height="50" rx="25" fill="#d3f9d8" stroke="#40c057" stroke-width="2"/>
+  <text x="340" y="266" text-anchor="middle" class="node-title">⚡ Action</text>
+  <text x="340" y="282" text-anchor="middle" class="node-desc">执行工具调用</text>
+
+  <!-- ===== 3. Observation 节点（左下）===== -->
+  <rect x="38" y="242" width="144" height="50" rx="25" fill="#fff4e6" stroke="#f76707" stroke-width="2"/>
+  <text x="110" y="266" text-anchor="middle" class="node-title">👁 Observation</text>
+  <text x="110" y="282" text-anchor="middle" class="node-desc">接收反馈结果</text>
+
+  <!-- ===== 循环箭头 ===== -->
+
+  <!-- Thought → Action（右下直线） -->
+  <line x1="297" y1="115" x2="340" y2="242" stroke="#339af0" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <text x="360" y="170" text-anchor="middle" class="edge-label">推理出行动</text>
+
+  <!-- Action → Observation（底部水平线） -->
+  <line x1="268" y1="267" x2="182" y2="267" stroke="#339af0" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <text x="225" y="258" text-anchor="middle" class="edge-label">环境返回</text>
+
+  <!-- Observation → Thought（左上直线） -->
+  <line x1="110" y1="242" x2="153" y2="115" stroke="#339af0" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <text x="85" y="180" text-anchor="middle" class="edge-label">整合新信息</text>
+
+  <!-- ===== 循环标注 ===== -->
+  <ellipse cx="225" cy="205" rx="90" ry="36" fill="none" stroke="#9775fa" stroke-width="1.5" stroke-dasharray="4,4"/>
+  <text x="225" y="209" text-anchor="middle" font-size="12" font-weight="600" fill="#9775fa">循环直至完成</text>
+
+  <!-- ===== 底部说明 ===== -->
+  <text x="225" y="358" text-anchor="middle" class="caption">Thought → Action → Observation → Thought 构成一个完整的 ReAct 循环</text>
+</svg>

@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 420" width="500" height="420">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&amp;family=Inter:wght@400;600;700&amp;display=swap');
+      text { font-family: 'Inter', 'Noto Sans SC', sans-serif; }
+      .title { font-size: 16px; font-weight: 600; fill: #1e1e1e; }
+      .sub { font-size: 12px; font-weight: 400; fill: #495057; }
+      .label { font-size: 11px; font-weight: 600; fill: #343a40; }
+      .body { font-size: 11px; font-weight: 400; fill: #495057; }
+      .tag { font-size: 10px; fill: #868e96; }
+      .caption { font-size: 11px; fill: #adb5bd; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#adb5bd"/>
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="500" height="420" fill="#ffffff" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="250" y="28" text-anchor="middle" class="title">Fig. 11.1  分通道渲染的终端界面示意（概念）</text>
+  <text x="250" y="46" text-anchor="middle" class="sub">三个并行渲染通道</text>
+
+  <!-- ========== 通道 1：思考过程 ========== -->
+  <!-- 通道背景 -->
+  <rect x="20" y="60" width="460" height="100" rx="8" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5"/>
+
+  <!-- 通道标签（左侧竖条） -->
+  <rect x="20" y="60" width="80" height="100" rx="8" fill="#e7f5ff" stroke="#339af0" stroke-width="1.5"/>
+  <rect x="20" y="60" width="80" height="100" fill="#e7f5ff"/>
+  <text x="60" y="98" text-anchor="middle" class="label" fill="#1971c2">思考过程</text>
+  <text x="60" y="120" text-anchor="middle" class="tag" fill="#339af0">Channel 1</text>
+
+  <!-- 展开/折叠指示器 -->
+  <rect x="115" y="75" width="60" height="20" rx="4" fill="#e9ecef"/>
+  <text x="145" y="89" text-anchor="middle" class="tag" fill="#495057">▼ 展开</text>
+
+  <!-- 折叠面板内容 -->
+  <rect x="185" y="75" width="280" height="70" rx="6" fill="#ffffff" stroke="#dee2e6" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="200" y="93" class="body" fill="#1e1e1e">用户想优化 Python 代码。需要先</text>
+  <text x="200" y="109" class="body" fill="#1e1e1e">搜索文档，然后对比几种优化</text>
+  <text x="200" y="125" class="body" fill="#1e1e1e">方案。逐步分析性能瓶颈...</text>
+  <text x="200" y="140" class="tag">已展开 · 持续流式输出</text>
+
+  <!-- ========== 通道 2：工具调用 ========== -->
+  <rect x="20" y="175" width="460" height="120" rx="8" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5"/>
+
+  <!-- 通道标签 -->
+  <rect x="20" y="175" width="80" height="120" rx="8" fill="#fff4e6" stroke="#f76707" stroke-width="1.5"/>
+  <rect x="20" y="175" width="80" height="120" fill="#fff4e6"/>
+  <text x="60" y="215" text-anchor="middle" class="label" fill="#d9480f">工具调用</text>
+  <text x="60" y="237" text-anchor="middle" class="tag" fill="#f76707">Channel 2</text>
+
+  <!-- 3条工具结果 -->
+  <rect x="115" y="188" width="350" height="24" rx="4" fill="#ebfbee" stroke="#40c057" stroke-width="0.8"/>
+  <circle cx="126" cy="200" r="4" fill="#40c057"/>
+  <text x="138" y="203" class="body" fill="#2b8a3e">✓ search_docs("Python 性能优化") — 搜索完成</text>
+
+  <rect x="115" y="218" width="350" height="24" rx="4" fill="#ebfbee" stroke="#40c057" stroke-width="0.8"/>
+  <circle cx="126" cy="230" r="4" fill="#40c057"/>
+  <text x="138" y="233" class="body" fill="#2b8a3e">  返回 3 条结果：列表推导式 / 数据结构 / 函数调用</text>
+
+  <rect x="115" y="248" width="350" height="24" rx="4" fill="#ebfbee" stroke="#40c057" stroke-width="0.8"/>
+  <circle cx="126" cy="260" r="4" fill="#40c057"/>
+  <text x="138" y="263" class="body" fill="#2b8a3e">✓ analyze_performance() — 确定瓶颈在循环部分</text>
+
+  <!-- 折叠按钮 -->
+  <rect x="115" y="280" width="70" height="18" rx="4" fill="#e9ecef"/>
+  <text x="150" y="293" text-anchor="middle" class="tag" fill="#495057">▲ 收起 (3/3)</text>
+
+  <!-- ========== 通道 3：回答 ========== -->
+  <rect x="20" y="310" width="460" height="90" rx="8" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5"/>
+
+  <!-- 通道标签 -->
+  <rect x="20" y="310" width="80" height="90" rx="8" fill="#f3f0ff" stroke="#9775fa" stroke-width="1.5"/>
+  <rect x="20" y="310" width="80" height="90" fill="#f3f0ff"/>
+  <text x="60" y="345" text-anchor="middle" class="label" fill="#6741d9">回答</text>
+  <text x="60" y="367" text-anchor="middle" class="tag" fill="#9775fa">Channel 3</text>
+
+  <!-- 回答内容 -->
+  <rect x="115" y="323" width="350" height="64" rx="6" fill="#ffffff" stroke="#dee2e6" stroke-width="1"/>
+  <text x="130" y="341" class="body" fill="#1e1e1e">以下是对 Python 代码进行性能优化的</text>
+  <text x="130" y="357" class="body" fill="#495057">几个常用方法：</text>
+  <text x="130" y="373" class="body" fill="#495057">1. 列表推导式比显式循环更快</text>
+
+  <!-- 底部箭头指示器 -->
+  <line x1="60" y1="405" x2="440" y2="405" stroke="#dee2e6" stroke-width="1" marker-end="url(#arrow)"/>
+  <text x="250" y="418" text-anchor="middle" class="caption">流式渲染: 各通道独立输出 → 最终合成完整响应</text>
+</svg>

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 530 380" width="530" height="380">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&amp;family=Inter:wght@400;600;700&amp;display=swap');
+      text { font-family: 'Inter', 'Noto Sans SC', sans-serif; }
+      .title { font-size: 15px; font-weight: 600; fill: #1e1e1e; }
+      .node-title { font-size: 13px; font-weight: 600; fill: #1e1e1e; }
+      .node-desc { font-size: 11px; font-weight: 400; fill: #495057; }
+      .edge-label { font-size: 11px; font-weight: 600; fill: #339af0; }
+      .edge-label-rej { font-size: 11px; font-weight: 600; fill: #e03131; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#868e96"/>
+    </marker>
+  </defs>
+
+  <rect width="530" height="380" fill="#ffffff" rx="8"/>
+  <text x="225" y="28" text-anchor="middle" class="title">Fig. 4.2  提示词回归测试流水线</text>
+
+  <!-- ===== 1. 修改提示词 ===== -->
+  <rect x="125" y="48" width="200" height="40" rx="8" fill="#fff4e6" stroke="#f76707" stroke-width="2"/>
+  <text x="225" y="68" text-anchor="middle" class="node-title">✏️ 修改提示词</text>
+  <text x="225" y="82" text-anchor="middle" class="node-desc">调整 Template / Instruction</text>
+
+  <line x1="225" y1="88" x2="225" y2="118" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ===== 2. 渲染 + Golden Set 测试 ===== -->
+  <rect x="115" y="118" width="220" height="40" rx="8" fill="#e7f5ff" stroke="#339af0" stroke-width="2"/>
+  <text x="225" y="138" text-anchor="middle" class="node-title">🔄 渲染模板 + Golden Set 测试</text>
+  <text x="225" y="152" text-anchor="middle" class="node-desc">批量跑 N 个 Case，计算通过率</text>
+
+  <line x1="225" y1="158" x2="225" y2="188" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ===== 3. 菱形决策 ===== -->
+  <polygon points="225,192 330,248 225,304 120,248" fill="#e7f5ff" stroke="#339af0" stroke-width="2"/>
+  <text x="225" y="244" text-anchor="middle" class="node-title">通过率达标？</text>
+  <text x="225" y="262" text-anchor="middle" class="node-desc">(如 ≥80%)</text>
+
+  <!-- 是 → 右侧 -->
+  <line x1="330" y1="248" x2="370" y2="248" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="358" y="238" text-anchor="middle" class="edge-label">是</text>
+
+  <!-- 否 → 向下 -->
+  <line x1="225" y1="304" x2="225" y2="330" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="242" y="320" text-anchor="start" class="edge-label-rej">否</text>
+
+  <!-- ===== 4a. 提交 PR（右侧） ===== -->
+  <rect x="370" y="226" width="130" height="44" rx="22" fill="#d3f9d8" stroke="#40c057" stroke-width="2"/>
+  <text x="435" y="245" text-anchor="middle" class="node-title">🚀 提交 PR</text>
+  <text x="435" y="262" text-anchor="middle" class="node-desc">（准出）</text>
+
+  <!-- ===== 4b. 驳回（下方） ===== -->
+  <rect x="125" y="330" width="200" height="40" rx="8" fill="#ffe0e0" stroke="#e03131" stroke-width="2"/>
+  <text x="225" y="349" text-anchor="middle" class="node-title">⛔ 标记回归 · 驳回修改</text>
+  <text x="225" y="363" text-anchor="middle" class="node-desc">返回第一步</text>
+</svg>

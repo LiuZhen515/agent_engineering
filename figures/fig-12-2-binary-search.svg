@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 400" width="550" height="400">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&amp;family=Inter:wght@400;600;700&amp;display=swap');
+      text { font-family: 'Inter', 'Noto Sans SC', sans-serif; }
+      .title { font-size: 16px; font-weight: 600; fill: #1e1e1e; }
+      .sub { font-size: 12px; font-weight: 400; fill: #495057; }
+      .label { font-size: 11px; font-weight: 600; }
+      .body { font-size: 11px; font-weight: 400; fill: #495057; }
+      .small { font-size: 10px; font-weight: 400; fill: #868e96; }
+      .caption { font-size: 11px; fill: #adb5bd; }
+    </style>
+    <marker id="arrow-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#e03131"/>
+    </marker>
+    <marker id="arrow-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#339af0"/>
+    </marker>
+    <marker id="arrow-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#40c057"/>
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="550" height="400" fill="#ffffff" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="275" y="28" text-anchor="middle" class="title">Fig. 12.2  分歧点二分定位</text>
+  <text x="275" y="46" text-anchor="middle" class="sub">二分查找调试 —— 将错误来源从 16 步缩小到 2 步</text>
+
+  <!-- ===== 顶部：步骤条（第1-16步） ===== -->
+  <rect x="30" y="60" width="490" height="40" rx="6" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1"/>
+
+  <!-- 错误指示：第16步 -->
+  <rect x="390" y="65" width="50" height="30" rx="4" fill="#fff5f5" stroke="#e03131" stroke-width="1.5"/>
+  <text x="415" y="84" text-anchor="middle" class="label" fill="#e03131" style="font-size:12px;">step 16</text>
+
+  <!-- 步骤刻度线（示意 1-16） -->
+  <line x1="50" y1="82" x2="380" y2="82" stroke="#dee2e6" stroke-width="1"/>
+  <circle cx="70" cy="82" r="3" fill="#adb5bd"/>
+  <circle cx="130" cy="82" r="3" fill="#adb5bd"/>
+  <circle cx="190" cy="82" r="3" fill="#adb5bd"/>
+  <circle cx="250" cy="82" r="3" fill="#adb5bd"/>
+  <circle cx="310" cy="82" r="3" fill="#adb5bd"/>
+  <circle cx="370" cy="82" r="3" fill="#adb5bd"/>
+  <text x="50" y="100" class="small">step 1</text>
+  <text x="350" y="100" class="small">step 15</text>
+
+  <!-- 失败标记 -->
+  <text x="415" y="102" text-anchor="middle" class="small" fill="#e03131">✗ 出错点</text>
+  <line x1="415" y1="100" x2="415" y2="110" stroke="#e03131" stroke-width="1" marker-end="url(#arrow-r)"/>
+
+  <!-- ===== 二分定位流程 ===== -->
+
+  <!-- 第1次：检查 step 8 -->
+  <line x1="415" y1="110" x2="70" y2="135" stroke="#339af0" stroke-width="1.5" marker-end="url(#arrow-b)"/>
+  <rect x="30" y="135" width="80" height="44" rx="6" fill="#e7f5ff" stroke="#339af0" stroke-width="1.5"/>
+  <text x="70" y="153" text-anchor="middle" class="label" fill="#1971c2">重放 #8</text>
+  <text x="70" y="170" text-anchor="middle" class="small" fill="#339af0">mid = (1+16)/2</text>
+
+  <!-- 结果：✅ -->
+  <rect x="120" y="145" width="60" height="24" rx="4" fill="#ebfbee" stroke="#40c057" stroke-width="1"/>
+  <text x="150" y="162" text-anchor="middle" class="body" fill="#2b8a3e">✅ 正确</text>
+
+  <!-- ===== 第2次：检查 step 12 ===== -->
+  <line x1="150" y1="169" x2="220" y2="195" stroke="#40c057" stroke-width="1.5" marker-end="url(#arrow-g)"/>
+  <rect x="180" y="195" width="80" height="44" rx="6" fill="#e7f5ff" stroke="#339af0" stroke-width="1.5"/>
+  <text x="220" y="213" text-anchor="middle" class="label" fill="#1971c2">重放 #12</text>
+  <text x="220" y="230" text-anchor="middle" class="small" fill="#339af0">mid = (9+16)/2</text>
+
+  <!-- 结果：❌ -->
+  <rect x="270" y="205" width="60" height="24" rx="4" fill="#fff5f5" stroke="#e03131" stroke-width="1"/>
+  <text x="300" y="222" text-anchor="middle" class="body" fill="#c92a2a">❌ 错误</text>
+
+  <!-- ===== 第3次：检查 step 10 ===== -->
+  <line x1="300" y1="229" x2="140" y2="260" stroke="#e03131" stroke-width="1.5" marker-end="url(#arrow-r)"/>
+  <rect x="100" y="260" width="80" height="44" rx="6" fill="#e7f5ff" stroke="#339af0" stroke-width="1.5"/>
+  <text x="140" y="278" text-anchor="middle" class="label" fill="#1971c2">重放 #10</text>
+  <text x="140" y="295" text-anchor="middle" class="small" fill="#339af0">mid = (9+12)/2</text>
+
+  <!-- 结果：✅ -->
+  <rect x="190" y="268" width="60" height="24" rx="4" fill="#ebfbee" stroke="#40c057" stroke-width="1"/>
+  <text x="220" y="285" text-anchor="middle" class="body" fill="#2b8a3e">✅ 正确</text>
+
+  <!-- ===== 第4次：检查 step 11 ===== -->
+  <line x1="220" y1="292" x2="290" y2="320" stroke="#339af0" stroke-width="1.5" marker-end="url(#arrow-b)"/>
+  <rect x="250" y="320" width="80" height="44" rx="6" fill="#e7f5ff" stroke="#339af0" stroke-width="1.5"/>
+  <text x="290" y="338" text-anchor="middle" class="label" fill="#1971c2">重放 #11</text>
+  <text x="290" y="355" text-anchor="middle" class="small" fill="#339af0">mid = (11+12)/2</text>
+
+  <!-- 结果：❌ -->
+  <rect x="340" y="328" width="60" height="24" rx="4" fill="#fff5f5" stroke="#e03131" stroke-width="1"/>
+  <text x="370" y="345" text-anchor="middle" class="body" fill="#c92a2a">❌ 错误</text>
+
+  <!-- ===== 结论 ===== -->
+  <line x1="370" y1="352" x2="450" y2="370" stroke="#e03131" stroke-width="2" marker-end="url(#arrow-r)"/>
+
+  <rect x="420" y="370" width="110" height="24" rx="6" fill="#fff5f5" stroke="#e03131" stroke-width="2"/>
+  <text x="475" y="387" text-anchor="middle" class="label" fill="#e03131" style="font-size:11px;">分歧点 = 第 11 步</text>
+
+  <!-- 底部提示 -->
+  <text x="275" y="395" text-anchor="middle" class="caption">短短 4 次重放，从 16 步范围锁定到 2 步区间</text>
+</svg>

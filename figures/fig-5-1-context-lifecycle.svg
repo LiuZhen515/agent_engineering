@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 320" width="600" height="320">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&amp;family=Inter:wght@400;600;700&amp;display=swap');
+      text { font-family: 'Inter', 'Noto Sans SC', sans-serif; }
+      .title { font-size: 15px; font-weight: 600; fill: #1e1e1e; }
+      .axis-label { font-size: 10px; font-weight: 400; fill: #868e96; }
+      .axis-title { font-size: 11px; font-weight: 600; fill: #495057; }
+    </style>
+  </defs>
+
+  <rect width="600" height="320" fill="#ffffff" rx="8"/>
+  <text x="300" y="28" text-anchor="middle" class="title">Fig. 5.1  上下文各分量的生命周期与上下文窗口占用关系</text>
+
+  <!-- ===== Y 轴 ===== -->
+  <text x="22" y="168" text-anchor="middle" transform="rotate(-90,22,168)" font-size="11" font-weight="600" fill="#495057">上下文窗口占用</text>
+  <line x1="40" y1="50" x2="40" y2="270" stroke="#868e96" stroke-width="1.5"/>
+
+  <!-- 时间箭头 -->
+  <line x1="40" y1="280" x2="560" y2="280" stroke="#dee2e6" stroke-width="2"/>
+  <polygon points="560,276 570,280 560,284" fill="#868e96"/>
+  <text x="570" y="294" text-anchor="middle" class="axis-title">生命周期</text>
+
+  <text x="170" y="294" text-anchor="middle" class="axis-label">短</text>
+  <text x="370" y="294" text-anchor="middle" class="axis-label">中</text>
+  <text x="520" y="294" text-anchor="middle" class="axis-label">长</text>
+
+  <!-- ===== 横向条状图 ===== -->
+  <!-- 每个条左侧是标签，右侧是条。使用固定布局 -->
+  <!-- 左列宽度 120px，从 x=150 开始 -->
+
+  <!-- P: 系统提示词 — 最长、稳定、不可压缩 -->
+  <text x="145" y="82" text-anchor="end" font-size="13" font-weight="600" fill="#1e1e1e">P (系统提示词)</text>
+  <rect x="155" y="65" width="400" height="30" rx="6" fill="#e7f5ff" stroke="#339af0" stroke-width="1.5"/>
+  <text x="180" y="84" font-size="11" fill="#495057">稳定、不可压缩，始终占用窗口头部</text>
+
+  <!-- H: 对话历史 — 中长，按窗口长度滚动 -->
+  <text x="145" y="127" text-anchor="end" font-size="13" font-weight="600" fill="#1e1e1e">H (对话历史)</text>
+  <rect x="155" y="110" width="320" height="30" rx="6" fill="#d3f9d8" stroke="#40c057" stroke-width="1.5"/>
+  <text x="180" y="129" font-size="11" fill="#495057">按窗口长度滚动裁剪</text>
+
+  <!-- R: 检索结果 — 最短，即用即弃 -->
+  <text x="145" y="172" text-anchor="end" font-size="13" font-weight="600" fill="#1e1e1e">R (检索结果)</text>
+  <rect x="155" y="155" width="140" height="30" rx="6" fill="#fff4e6" stroke="#f76707" stroke-width="1.5"/>
+  <text x="180" y="174" font-size="11" fill="#495057">即用即弃，优先压缩</text>
+
+  <!-- O: 工具输出 — 第二短短，可摘要 -->
+  <text x="145" y="217" text-anchor="end" font-size="13" font-weight="600" fill="#1e1e1e">O (工具输出)</text>
+  <rect x="155" y="200" width="180" height="30" rx="6" fill="#f3f0ff" stroke="#9775fa" stroke-width="1.5"/>
+  <text x="180" y="219" font-size="11" fill="#495057">可摘要为 H 的一部分</text>
+
+  <!-- S: 系统状态 — 中等 -->
+  <text x="145" y="262" text-anchor="end" font-size="13" font-weight="600" fill="#1e1e1e">S (系统状态)</text>
+  <rect x="155" y="245" width="200" height="30" rx="6" fill="#ffe0e0" stroke="#e03131" stroke-width="1.5"/>
+  <text x="178" y="264" font-size="11" fill="#495057">极小固定占用</text>
+
+</svg>

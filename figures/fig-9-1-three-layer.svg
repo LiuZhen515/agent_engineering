@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 350" width="500" height="350">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&amp;family=Inter:wght@400;600;700&amp;display=swap');
+      text { font-family: 'Inter', 'Noto Sans SC', sans-serif; }
+      .title { font-size: 16px; font-weight: 600; fill: #1e1e1e; }
+      .layer-title { font-size: 15px; font-weight: 600; fill: #1e1e1e; }
+      .layer-en { font-size: 12px; font-weight: 500; fill: #495057; }
+      .layer-desc { font-size: 11px; font-weight: 400; fill: #6c757d; }
+      .layer-q { font-size: 11px; font-weight: 400; fill: #868e96; }
+      .caption { font-size: 11px; fill: #adb5bd; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#adb5bd"/>
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="500" height="350" fill="#ffffff" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="250" y="28" text-anchor="middle" class="title">Fig. 9.1  Harness / Framework / Agent 三层栈</text>
+
+  <!-- ===== Agent 层（顶部）===== -->
+  <rect x="50" y="50" width="400" height="75" rx="8" fill="#e7f5ff" stroke="#339af0" stroke-width="2"/>
+  <text x="250" y="76" text-anchor="middle" class="layer-title">Agent Layer（Agent 层）</text>
+  <text x="250" y="97" text-anchor="middle" class="layer-desc">智能体 (LLM + Prompt + Tool Definitions) — 解决"做什么"</text>
+
+  <!-- 向下箭头 -->
+  <line x1="250" y1="125" x2="250" y2="150" stroke="#adb5bd" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ===== Framework 层（中间）===== -->
+  <rect x="50" y="152" width="400" height="75" rx="8" fill="#d3f9d8" stroke="#40c057" stroke-width="2"/>
+  <text x="250" y="178" text-anchor="middle" class="layer-title">Framework Layer（框架层）</text>
+  <text x="250" y="199" text-anchor="middle" class="layer-desc">框架 (LangChain / LlamaIndex / Vercel AI) — 解决"怎么写"</text>
+
+  <!-- 向下箭头 -->
+  <line x1="250" y1="227" x2="250" y2="252" stroke="#adb5bd" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ===== Harness 层（底部）===== -->
+  <rect x="50" y="254" width="400" height="75" rx="8" fill="#fff4e6" stroke="#f76707" stroke-width="2"/>
+  <text x="250" y="280" text-anchor="middle" class="layer-title">Harness Layer（驾驭层）</text>
+  <text x="250" y="301" text-anchor="middle" class="layer-desc">驾驭器 (Scheduling + Permissions + HCI + Obs) — 解决"怎么跑"</text>
+</svg>

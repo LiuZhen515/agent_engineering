@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 400" width="450" height="400">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&amp;family=Inter:wght@400;600;700&amp;display=swap');
+      text { font-family: 'Inter', 'Noto Sans SC', sans-serif; }
+      .title { font-size: 16px; font-weight: 600; fill: #1e1e1e; }
+      .step-title { font-size: 12px; font-weight: 600; fill: #1e1e1e; }
+      .step-desc { font-size: 10px; font-weight: 400; fill: #495057; }
+      .step-num { font-size: 11px; font-weight: 700; fill: #ffffff; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#868e96"/>
+    </marker>
+  </defs>
+
+  <rect width="450" height="400" fill="#ffffff" rx="8"/>
+  <text x="225" y="25" text-anchor="middle" class="title">Fig. 8.1  工具检索式选择流程</text>
+
+  <!-- ===== 步骤 1 ===== -->
+  <rect x="100" y="40" width="250" height="44" rx="8" fill="#e7f5ff" stroke="#339af0" stroke-width="1.5"/>
+  <circle cx="118" cy="49" r="8" fill="#339af0"/>
+  <text x="118" y="53" text-anchor="middle" class="step-num">1</text>
+  <text x="225" y="58" text-anchor="middle" class="step-title">用户查询 Q</text>
+  <text x="225" y="74" text-anchor="middle" class="step-desc">自然语言输入</text>
+
+  <!-- 箭头 1→2 -->
+  <line x1="225" y1="84" x2="225" y2="105" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ===== 步骤 2 ===== -->
+  <rect x="100" y="108" width="250" height="44" rx="8" fill="#d3f9d8" stroke="#40c057" stroke-width="1.5"/>
+  <circle cx="118" cy="117" r="8" fill="#40c057"/>
+  <text x="118" y="121" text-anchor="middle" class="step-num">2</text>
+  <text x="225" y="126" text-anchor="middle" class="step-title">查询嵌入 + 向量检索</text>
+  <text x="225" y="142" text-anchor="middle" class="step-desc">语义匹配 → 工具向量库</text>
+
+  <!-- 箭头 2→3 -->
+  <line x1="225" y1="152" x2="225" y2="173" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ===== 步骤 3 ===== -->
+  <rect x="100" y="176" width="250" height="44" rx="8" fill="#fff4e6" stroke="#f76707" stroke-width="1.5"/>
+  <circle cx="118" cy="185" r="8" fill="#f76707"/>
+  <text x="118" y="189" text-anchor="middle" class="step-num">3</text>
+  <text x="225" y="194" text-anchor="middle" class="step-title">返回 Top-k 工具名列表</text>
+  <text x="225" y="210" text-anchor="middle" class="step-desc">候选工具排序</text>
+
+  <!-- 箭头 3→4 -->
+  <line x1="225" y1="220" x2="225" y2="241" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ===== 步骤 4 ===== -->
+  <rect x="100" y="244" width="250" height="44" rx="8" fill="#e7f5ff" stroke="#339af0" stroke-width="1.5"/>
+  <circle cx="118" cy="253" r="8" fill="#339af0"/>
+  <text x="118" y="257" text-anchor="middle" class="step-num">4</text>
+  <text x="225" y="262" text-anchor="middle" class="step-title">读取 Schema</text>
+  <text x="225" y="278" text-anchor="middle" class="step-desc">加载工具元数据（参数、描述）</text>
+
+  <!-- 箭头 4→5 -->
+  <line x1="225" y1="288" x2="225" y2="309" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ===== 步骤 5 ===== -->
+  <rect x="100" y="312" width="250" height="44" rx="8" fill="#d3f9d8" stroke="#40c057" stroke-width="1.5"/>
+  <circle cx="118" cy="321" r="8" fill="#40c057"/>
+  <text x="118" y="325" text-anchor="middle" class="step-num">5</text>
+  <text x="225" y="330" text-anchor="middle" class="step-title">注入上下文 P</text>
+  <text x="225" y="346" text-anchor="middle" class="step-desc">作为系统提示词的工具描述部分</text>
+
+  <!-- 右侧竖线流程标注 -->
+  <line x1="365" y1="62" x2="410" y2="62" stroke="#adb5bd" stroke-width="1" stroke-dasharray="2,2"/>
+  <text x="420" y="58" font-size="9" fill="#868e96">输入</text>
+
+  <line x1="365" y1="130" x2="410" y2="130" stroke="#adb5bd" stroke-width="1" stroke-dasharray="2,2"/>
+  <text x="420" y="126" font-size="9" fill="#868e96">检索</text>
+
+  <line x1="365" y1="198" x2="410" y2="198" stroke="#adb5bd" stroke-width="1" stroke-dasharray="2,2"/>
+  <text x="420" y="194" font-size="9" fill="#868e96">排序</text>
+
+  <line x1="365" y1="266" x2="410" y2="266" stroke="#adb5bd" stroke-width="1" stroke-dasharray="2,2"/>
+  <text x="420" y="262" font-size="9" fill="#868e96">加载</text>
+
+  <line x1="365" y1="334" x2="410" y2="334" stroke="#adb5bd" stroke-width="1" stroke-dasharray="2,2"/>
+  <text x="420" y="330" font-size="9" fill="#868e96">组装</text>
+</svg>

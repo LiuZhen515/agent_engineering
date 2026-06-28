@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 380" width="550" height="380">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&amp;family=Inter:wght@400;600;700&amp;display=swap');
+      text { font-family: 'Inter', 'Noto Sans SC', sans-serif; }
+      .title { font-size: 15px; font-weight: 600; fill: #1e1e1e; }
+      .sub { font-size: 12px; font-weight: 400; fill: #495057; }
+      .state-label { font-size: 13px; font-weight: 600; }
+      .cond-label { font-size: 10px; font-weight: 400; fill: #495057; }
+      .cond-high { font-size: 10px; font-weight: 600; }
+      .caption { font-size: 11px; fill: #adb5bd; }
+    </style>
+    <marker id="arrow-p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#339af0"/>
+    </marker>
+    <marker id="arrow-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#f76707"/>
+    </marker>
+    <marker id="arrow-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#40c057"/>
+    </marker>
+  </defs>
+
+  <rect width="550" height="380" fill="#ffffff" rx="8"/>
+  <text x="275" y="28" text-anchor="middle" class="title">Fig. 11.2  模式切换状态机</text>
+  <text x="275" y="46" text-anchor="middle" class="sub">三种执行模式之间的状态转换</text>
+
+  <!-- ===== 三个状态节点：左→右水平排列 ===== -->
+
+  <!-- 节点 1：计划模式（左） -->
+  <rect x="30" y="100" width="140" height="60" rx="30" fill="#339af0" stroke="#1c7ed6" stroke-width="2"/>
+  <text x="100" y="128" text-anchor="middle" class="state-label" fill="#ffffff">计划模式</text>
+  <text x="100" y="146" text-anchor="middle" style="font-size:10px;fill:#ffffff;opacity:0.8;">Plan</text>
+
+  <!-- 节点 2：审批模式（中） -->
+  <rect x="205" y="100" width="140" height="60" rx="30" fill="#f76707" stroke="#e8590c" stroke-width="2"/>
+  <text x="275" y="128" text-anchor="middle" class="state-label" fill="#ffffff">审批模式</text>
+  <text x="275" y="146" text-anchor="middle" style="font-size:10px;fill:#ffffff;opacity:0.8;">Approval</text>
+
+  <!-- 节点 3：自动模式（右） -->
+  <rect x="380" y="100" width="140" height="60" rx="30" fill="#40c057" stroke="#2f9e44" stroke-width="2"/>
+  <text x="450" y="128" text-anchor="middle" class="state-label" fill="#ffffff">自动模式</text>
+  <text x="450" y="146" text-anchor="middle" style="font-size:10px;fill:#ffffff;opacity:0.8;">Auto</text>
+
+  <!-- ===== 转移箭头 ===== -->
+
+  <!-- 1. 计划 → 审批（前进，上方） -->
+  <line x1="170" y1="115" x2="200" y2="115" stroke="#339af0" stroke-width="2" marker-end="url(#arrow-p)"/>
+  <rect x="155" y="80" width="60" height="14" rx="3" fill="#ffffff" stroke="#dee2e6" stroke-width="0.5"/>
+  <text x="185" y="91" text-anchor="middle" class="cond-label" fill="#339af0">用户信任提升</text>
+
+  <!-- 2. 审批 → 自动（前进，上方） -->
+  <line x1="345" y1="115" x2="372" y2="115" stroke="#f76707" stroke-width="2" marker-end="url(#arrow-a)"/>
+  <rect x="330" y="80" width="60" height="14" rx="3" fill="#ffffff" stroke="#dee2e6" stroke-width="0.5"/>
+  <text x="360" y="91" text-anchor="middle" class="cond-label" fill="#d9480f">连续批准后自动</text>
+
+  <!-- 3. 自动 → 审批（回退，下方弧形） -->
+  <path d="M 450 160 Q 362.5 215 275 160" fill="none" stroke="#adb5bd" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow-g)"/>
+  <rect x="326" y="192" width="72" height="14" rx="3" fill="#ffffff" stroke="#dee2e6" stroke-width="0.5"/>
+  <text x="362" y="203" text-anchor="middle" class="cond-label" fill="#868e96">操作失败/异常</text>
+
+  <!-- 4. 审批 → 计划（回退，下方弧形） -->
+  <path d="M 275 160 Q 187.5 215 100 160" fill="none" stroke="#adb5bd" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow-g)"/>
+  <rect x="150" y="192" width="74" height="14" rx="3" fill="#ffffff" stroke="#dee2e6" stroke-width="0.5"/>
+  <text x="187" y="203" text-anchor="middle" class="cond-label" fill="#868e96">手动切换/高风险</text>
+
+  <!-- ===== 底部说明 ===== -->
+  <line x1="60" y1="240" x2="490" y2="240" stroke="#dee2e6" stroke-width="0.8"/>
+
+  <rect x="60" y="255" width="12" height="12" rx="6" fill="#339af0"/>
+  <text x="80" y="266" class="cond-label" fill="#495057">计划: LLM 生成计划后等待确认</text>
+  <rect x="250" y="255" width="12" height="12" rx="6" fill="#f76707"/>
+  <text x="270" y="266" class="cond-label" fill="#495057">审批: 每次工具调用前需人工放行</text>
+  <rect x="60" y="275" width="12" height="12" rx="6" fill="#40c057"/>
+  <text x="80" y="286" class="cond-label" fill="#495057">自动: 完全自主执行, 异常时回退到审批模式</text>
+
+</svg>

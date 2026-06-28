@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 550" width="800" height="550">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&amp;family=Inter:wght@400;600;700&amp;display=swap');
+      text { font-family: 'Inter', 'Noto Sans SC', sans-serif; }
+      .title { font-size: 16px; font-weight: 600; fill: #1e1e1e; }
+      .sub { font-size: 12px; font-weight: 400; fill: #495057; }
+      .legend-title { font-size: 13px; font-weight: 600; fill: #343a40; }
+      .legend-sub { font-size: 10px; font-weight: 400; fill: #868e96; }
+      .caption { font-size: 11px; fill: #adb5bd; }
+    </style>
+  </defs>
+
+  <rect width="800" height="550" fill="#ffffff" rx="8"/>
+
+  <!-- 标题 -->
+  <text x="400" y="26" text-anchor="middle" class="title">Fig 1.2  四层洋葱图</text>
+
+  <!-- ===== 四层嵌套盒子 ===== -->
+
+  <!-- 第 4 层：Loop -->
+  <rect x="40" y="45" width="720" height="395" rx="12" fill="#f3f0ff" stroke="#9775fa" stroke-width="2.5"/>
+
+  <!-- 第 3 层：Harness -->
+  <rect x="110" y="115" width="580" height="295" rx="10" fill="#e7f5ff" stroke="#339af0" stroke-width="2"/>
+
+  <!-- 第 2 层：Context -->
+  <rect x="180" y="185" width="440" height="195" rx="8" fill="#ebfbee" stroke="#40c057" stroke-width="2"/>
+
+  <!-- 第 1 层：Prompt -->
+  <rect x="260" y="255" width="280" height="95" rx="8" fill="#fff4e6" stroke="#f76707" stroke-width="2"/>
+
+  <!-- ===== 各层文字 ===== -->
+
+  <!-- Loop -->
+  <text x="400" y="73" text-anchor="middle" class="title">Loop Engineering（循环工程）</text>
+  <text x="400" y="93" text-anchor="middle" class="sub">编排 System 行为</text>
+
+  <!-- Harness -->
+  <text x="400" y="143" text-anchor="middle" class="title">Harness Engineering（驾驭工程）</text>
+  <text x="400" y="163" text-anchor="middle" class="sub">封装 Runtime</text>
+
+  <!-- Context -->
+  <text x="400" y="213" text-anchor="middle" class="title">Context Engineering（上下文工程）</text>
+  <text x="400" y="233" text-anchor="middle" class="sub">治理 Window</text>
+
+  <!-- Prompt -->
+  <text x="400" y="285" text-anchor="middle" class="title">Prompt Engineering（提示词工程）</text>
+  <text x="400" y="305" text-anchor="middle" class="sub">操作 Token</text>
+
+  <!-- ===== 底部图例 ===== -->
+
+  <line x1="60" y1="475" x2="740" y2="475" stroke="#dee2e6" stroke-width="1"/>
+
+  <text x="170" y="460" text-anchor="middle" class="legend-title">Token 层</text>
+  <text x="170" y="490" text-anchor="middle" class="legend-sub">毫秒级 · 单次推理</text>
+
+  <text x="280" y="473" text-anchor="middle" fill="#adb5bd" font-size="16">→</text>
+
+  <text x="360" y="460" text-anchor="middle" class="legend-title">Window 层</text>
+  <text x="360" y="490" text-anchor="middle" class="legend-sub">秒级 · 一轮对话</text>
+
+  <text x="460" y="473" text-anchor="middle" fill="#adb5bd" font-size="16">→</text>
+
+  <text x="530" y="460" text-anchor="middle" class="legend-title">Runtime 层</text>
+  <text x="530" y="490" text-anchor="middle" class="legend-sub">分钟级 · 一次任务</text>
+
+  <text x="620" y="473" text-anchor="middle" fill="#adb5bd" font-size="16">→</text>
+
+  <text x="690" y="460" text-anchor="middle" class="legend-title">System 层</text>
+  <text x="690" y="490" text-anchor="middle" class="legend-sub">天级 · 自进化</text>
+
+  <text x="400" y="530" text-anchor="middle" class="caption">从 Token 到 System，从一次调用到完整的自主闭环</text>
+</svg>
