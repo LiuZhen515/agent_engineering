@@ -14,7 +14,7 @@
 
 **定义 2.1（Token 序列）**：给定文本 $\mathcal{T}$ 和分词器 $\phi$，Token 序列为
 $$X = \langle x_1, x_2, \ldots, x_n \rangle = \phi(\mathcal{T})$$
-其中每个 $x_i$ 是词表 $\mathcal{V}$ 中的一个词条，$n = |X|$ 为 Token 计数。分词器 $\phi$ 将连续的文本字符串映射为离散的 Token ID 序列，该映射不可逆且因模型而异。
+其中每个 $x_i$ 是词表 $\mathcal{V}$ 中的一个词条， $n = |X|$ 为 Token 计数。分词器 $\phi$ 将连续的文本字符串映射为离散的 Token ID 序列，该映射不可逆且因模型而异。
 
 ### 2.1.1 分词器差异与隐藏成本
 
@@ -62,7 +62,7 @@ $$\mathcal{L}(P) = \{ \log p(y_1 \mid P), \log p(y_2 \mid P, y_1), \ldots, \log 
 $$H(P) = -\sum_{i=1}^m \sum_{v \in \mathcal{V}} p(v \mid P, y_{<i}) \log p(v \mid P, y_{<i})$$
 实际计算时，由于 API 仅返回 Top-$k$ logprobs，使用截断近似：
 $$\hat{H}(P) = -\sum_{v \in \mathcal{V}^{(k)}} \hat{p}(v) \log \hat{p}(v)$$
-其中 $\mathcal{V}^{(k)}$ 为 Top-$k$ 词条集，$\hat{p}$ 为 softmax 重归一化后的概率。高熵 $H(P)$ 意味着模型对输出的不确定性大——提示词可能存在歧义；低熵 $H(P)$ 意味着输出高度确定——模型清楚要输出什么。
+其中 $\mathcal{V}^{(k)}$ 为 Top-$k$ 词条集， $\hat{p}$ 为 softmax 重归一化后的概率。高熵 $H(P)$ 意味着模型对输出的不确定性大——提示词可能存在歧义；低熵 $H(P)$ 意味着输出高度确定——模型清楚要输出什么。
 
 ### 2.2.1 困惑度、对数概率与"提示词熵"
 
@@ -117,7 +117,7 @@ def diagnose_prompt(prompt: str, client, model: str) -> dict:
 
 **Temperature 与任务确定性。** Temperature 控制输出概率分布 $\mathcal{P}(y \mid x)$ 的"尖锐度"。其物理原理是 softmax 的温度缩放：
 $$p_i = \frac{\exp(z_i / T)}{\sum_j \exp(z_j / T)}$$
-其中 $z_i$ 为 logits，$T$ 为 Temperature。$T$ 越小，softmax 输出的分布越尖锐（高概率 Token 更突出）；$T$ 越大，分布越平坦（各 Token 概率趋同）。工程选型原则：**任务类型决定 $T$**——生成代码、提取结构化信息、执行工具调用等"高确定性任务"，使用 $T \in [0, 0.3]$（甚至 greedy decoding，即 $T=0$）；创意写作、头脑风暴等"低确定性任务"，使用 $T \in [0.7, 1.0]$。当 $T=0$ 时，模型总是选择 logits 最大的 Token，此时输出完全确定（即 argmax 解码）。一个常见的工程错误是将 Temperature 简化为"创造力旋钮"，然后无差别地应用于所有场景。
+其中 $z_i$ 为 logits， $T$ 为 Temperature。 $T$ 越小，softmax 输出的分布越尖锐（高概率 Token 更突出）； $T$ 越大，分布越平坦（各 Token 概率趋同）。工程选型原则：**任务类型决定 $T$**——生成代码、提取结构化信息、执行工具调用等"高确定性任务"，使用 $T \in [0, 0.3]$（甚至 greedy decoding，即 $T=0$）；创意写作、头脑风暴等"低确定性任务"，使用 $T \in [0.7, 1.0]$。当 $T=0$ 时，模型总是选择 logits 最大的 Token，此时输出完全确定（即 argmax 解码）。一个常见的工程错误是将 Temperature 简化为"创造力旋钮"，然后无差别地应用于所有场景。
 
 > **工程原则 3（确定性匹配原则）**：任务确定性决定采样参数选型——代码/结构化输出用 $T \in [0, 0.3]$，创意任务用 $T \in [0.7, 1.0]$，二者中间值适用于混合场景（如代码注释生成）。
 
@@ -125,7 +125,7 @@ $$p_i = \frac{\exp(z_i / T)}{\sum_j \exp(z_j / T)}$$
 
 > **反方观点**：部分研究认为 Top-p 和 Top-k 联合使用可以提供更稳定的输出质量，但前提是参数经过仔细调优（如 $k=50, p=0.9$），且在模型这方面有足够的批量测试验证。对于大多数工程场景，单一参数策略更简单且可预测性更好。
 
-**Logit Bias 与硬约束输出。** Logit Bias 允许对候选 Token 的 logits 做加性调整：$z_i' = z_i + b_i$，其中 $b_i$ 为正时增加该 Token 被选中的概率，为负时降低它。这是一个强大的"硬约束"工具。其物理原理是在 softmax 之前对概率分布做偏移，类似在概率空间施加一个"势场"。典型工程用法：在结构化输出任务中，对可能破坏 JSON 格式的 Token（如未闭合的 "```"、未配对引号）施加负 Bias；在代码生成中，对不安全的函数名（如 `eval`、`exec`）施加负 Bias。注意 Logit Bias 是**加法**而非乘法——在 logit 尺度上的一个小数值（如 ±5）已经足以产生显著影响。以下是一个 Logit Bias 的使用示例（对应动手题 3）：
+**Logit Bias 与硬约束输出。** Logit Bias 允许对候选 Token 的 logits 做加性调整： $z_i' = z_i + b_i$，其中 $b_i$ 为正时增加该 Token 被选中的概率，为负时降低它。这是一个强大的"硬约束"工具。其物理原理是在 softmax 之前对概率分布做偏移，类似在概率空间施加一个"势场"。典型工程用法：在结构化输出任务中，对可能破坏 JSON 格式的 Token（如未闭合的 "```"、未配对引号）施加负 Bias；在代码生成中，对不安全的函数名（如 `eval`、`exec`）施加负 Bias。注意 Logit Bias 是**加法**而非乘法——在 logit 尺度上的一个小数值（如 ±5）已经足以产生显著影响。以下是一个 Logit Bias 的使用示例（对应动手题 3）：
 
 ```python
 # Logit Bias 语法示例：强制模型在 {"status": "ok"} 和 {"status": "error"} 之间选择

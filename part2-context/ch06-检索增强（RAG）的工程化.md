@@ -88,13 +88,13 @@ for doc_id, score in fused[:3]:
 
 **Cross-encoder vs LLM Reranker。** Cross-encoder（如 BGE-reranker-v2、Cohere rerank）将查询和文档拼接后一次性输入模型，输出一个相关性分数。它比双编码器（Bi-encoder，即嵌入向量检索）更准确，因为模型能够"看到"查询和文档之间的交互。但 Cross-encoder 的成本也更高——为每个查询-文档对运行一次推理。LLM Reranker 则直接使用 LLM（如 GPT-4o-mini）判断文档-查询相关性，优点是零额外模型部署成本（复用已有 LLM），缺点是延迟更高、成本取决于 Token 消耗。**选型建议**：高吞吐系统用 Cross-encoder（延迟 < 50ms/对）；低吞吐但高精度场景用 LLM Reranker（可结合 CoT 推理解释相关性判据）。
 
-**定义 6.1（检索延迟预算）**：RAG 系统的检索预算 $B_{\text{retrieval}}$ 定义为从用户查询到达系统到检索结果 $R$ 被注入上下文之间的最大允许时间。$B_{\text{retrieval}}$ 由以下公式约束：
+**定义 6.1（检索延迟预算）**：RAG 系统的检索预算 $B_{\text{retrieval}}$ 定义为从用户查询到达系统到检索结果 $R$ 被注入上下文之间的最大允许时间。 $B_{\text{retrieval}}$ 由以下公式约束：
 
 $$B_{\text{retrieval}} = T_{\text{embed}} + T_{\text{search}} + T_{\text{rerank}}$$
 
-其中 $T_{\text{embed}}$ 为查询嵌入时间，$T_{\text{search}}$ 为向量库搜索时间，$T_{\text{rerank}}$ 为 Re-ranker 时间。经验阈值：$B_{\text{retrieval}} < 2s$（聊天场景），$B_{\text{retrieval}} < 5s$（RAG 问答场景）。
+其中 $T_{\text{embed}}$ 为查询嵌入时间， $T_{\text{search}}$ 为向量库搜索时间， $T_{\text{rerank}}$ 为 Re-ranker 时间。经验阈值： $B_{\text{retrieval}} < 2s$（聊天场景）， $B_{\text{retrieval}} < 5s$（RAG 问答场景）。
 
-**延迟预算分配。** 在固定的 $B_{\text{retrieval}}$ 下，三阶段的延迟分配决定了最终召回质量。典型分配：$T_{\text{embed}}$ 占 10%（约 100–300ms）、$T_{\text{search}}$ 占 20%（约 200–500ms）、$T_{\text{rerank}}$ 占 70%（约 500–1,500ms）。如果 re-rank 延迟过高，可以缩小候选池大小（Top-30 → Top-20）或使用更轻量的 Cross-encoder。
+**延迟预算分配。** 在固定的 $B_{\text{retrieval}}$ 下，三阶段的延迟分配决定了最终召回质量。典型分配： $T_{\text{embed}}$ 占 10%（约 100–300ms）、 $T_{\text{search}}$ 占 20%（约 200–500ms）、 $T_{\text{rerank}}$ 占 70%（约 500–1,500ms）。如果 re-rank 延迟过高，可以缩小候选池大小（Top-30 → Top-20）或使用更轻量的 Cross-encoder。
 
 ### 6.2.3 查询改写
 
