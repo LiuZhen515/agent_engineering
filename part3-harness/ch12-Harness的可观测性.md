@@ -23,7 +23,7 @@ OpenTelemetry（OTel）是云原生领域可观测性的事实标准。它定义
 | Attribute | Span 的属性键值对 | `llm.model = "gpt-4o"`, `tool.name = "search_docs"` |
 | Event | Span 内的日志事件 | `tool.callback_id = "call_xxx"`, `context.tokens_input = 4500` |
 
-![Fig. 12.1 Agent 执行的 Trace / Span 结构](figures/fig-12-1-trace-span.svg)
+![Fig. 12.1 Agent 执行的 Trace / Span 结构](../figures/fig-12-1-trace-span.svg)
 
 ### 12.1.2 Span 属性的最小集
 
@@ -87,7 +87,7 @@ $$C_t = \langle t, P_t, H_t, R_t, O_t, S_t \rangle$$
 
 分歧点定位方法：使用二分搜索遍历状态快照。假设 Agent 执行了 16 步，第 16 步的结果是错误的。开发者先重放第 8 步的快照，检查第 8 步的结果是否正确；如果第 8 步正确，则第 9–16 步中有问题，继续二分搜索第 12 步…… 16 步的问题最多只需要 4 次重放就能定位分歧点。
 
-![Fig. 12.2 分歧点二分定位](figures/fig-12-2-binary-search.svg)
+![Fig. 12.2 分歧点二分定位](../figures/fig-12-2-binary-search.svg)
 
 > **工程原则 2（快照采样策略）**：状态快照存储成本随执行步数线性增长。工程实践：默认保留最近 5 个快照在内存中，每 10 步将历史快照异步写入磁盘。对于调试任务，开发者在开始执行时可以选择"全量快照模式"（保留每一步的完整状态）。
 

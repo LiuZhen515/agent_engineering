@@ -21,7 +21,7 @@ Harness 是一个在 Agent 社区中常被误用或混淆的概念。它与 Fram
 - **Framework（框架）**：构建 Agent 的开发工具库，解决"怎么写"的问题。
 - **Harness（驾驭器）**：运行 Agent 的运行时环境，解决"怎么跑"的问题。
 
-![Fig. 9.1 Harness / Framework / Agent 三层栈](figures/fig-9-1-three-layer.svg)
+![Fig. 9.1 Harness / Framework / Agent 三层栈](../figures/fig-9-1-three-layer.svg)
 
 **Harness 是 Agent 的"宿主操作系统"。** 这个类比值得深究：操作系统为应用程序提供进程调度、内存管理、文件系统和设备驱动；Harness 为 Agent 提供 LLM 调用调度、上下文窗口管理（$P$ / $H$ / $R$ / $O$ / $S$ 五元组的运行时组装）、工具权限控制和可观测性通道。没有操作系统，程序无法运行；没有 Harness，Agent 只是一个 LLM 调用脚本。
 
@@ -77,7 +77,7 @@ class Harness:
 
 **中断与续跑。** 长时间运行的 Agent 任务（如"审查整个代码库并提交 PR"）可能超过用户可接受的等待时间。Harness 应支持**中断**（用户可以在任意时刻暂停任务，查看中间结果）和**续跑**（从中断点恢复执行，不丢失已完成的工作）。续跑的工程挑战在于：恢复时需要重建上下文状态——当前步骤的中间结果、工具调用的部分输出、以及用户的中断指令都需要被正确地写入 $H$ 分量。
 
-![Fig. 9.2 Harness 调度循环](figures/fig-9-2-harness-loop.svg)
+![Fig. 9.2 Harness 调度循环](../figures/fig-9-2-harness-loop.svg)
 
 ### 9.2.2 权限
 
