@@ -1,5 +1,9 @@
 # 智能体工程：从一句话到一个闭环
 
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-blue?style=flat-square)](LICENSE)
+[![GitHub Stars](https://img.shields.io/github/stars/LiuZhen515/agent_engineering?style=flat-square&logo=github)]()
+[![Chapters](https://img.shields.io/badge/Chapters-20-brightgreen?style=flat-square)]()
+
 > **Prompt · Context · Harness · Loop**
 >
 > 从 Token 到 System，从一次调用到完整的自主闭环
